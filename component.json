@@ -1,0 +1,21 @@
+{
+  "name": "carousel",
+  "repo": "ramitos/carousel",
+  "version": "0.0.1",
+  "scripts": [
+    "templates/image.js",
+    "templates/main.js",
+    "src/carousel.js"
+  ],
+  "styles": [
+    "src/carousel.css"
+  ],
+  "main": "src/carousel.js",
+  "dependencies": {
+    "ramitos/interpolate": "*",
+    "component/classes": "*",
+    "component/domify": "*",
+    "component/event": "*",
+    "ramitos/sgen": "*"
+  }
+}

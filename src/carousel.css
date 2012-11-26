@@ -1,0 +1,11 @@
+.carousel .images img {
+  display: none;
+}
+
+.carousel .images img.active {
+  display: inline-block;
+}
+
+.carousel .controls > div.disabled {
+  color: red;
+}
