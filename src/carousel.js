@@ -36,7 +36,7 @@ module.exports = function (container) {
   var els = {};
   var pos = 1;
 
-  container.appendChild(domify(templates.main.replace(/%s/mg, id())));
+  container.appendChild(domify(templates.main.replace(/%s/mg, id())).pop());
 
   els.images = el(id('images'));
   els.count = el(id('count'));
