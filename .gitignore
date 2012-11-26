@@ -1,4 +1,3 @@
 components
 build
 .DS_Store
-templates/*.js
