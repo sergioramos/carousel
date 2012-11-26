@@ -55,7 +55,7 @@ module.exports = function (container) {
   var image = function (src) {
     if(size === 0) disable('next', 'last');
     var str = interpolate(templates.image, src, id(), size + 1, active());
-    var node = domify(str);
+    var node = domify(str).pop();
     size += 1;
     return node;
   };
