@@ -69,6 +69,7 @@ module.exports = function (container) {
   var move = function (prev, next) {
     classes(el(id('image-' + prev))).remove('active');
     classes(el(id('image-' + next))).add('active');
+    els.count.innerHTML = interpolate('%s/%s', next, size);
   };
 
   var first = function () {
