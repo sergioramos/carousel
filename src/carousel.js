@@ -52,6 +52,10 @@ module.exports = function (container) {
     });
   };
 
+  var selected = function () {
+    return pos;
+  };
+
   var image = function (src) {
     if(size === 0) disable('next', 'last');
     var str = interpolate(templates.image, src, id(), size + 1, active());
@@ -102,7 +106,8 @@ module.exports = function (container) {
   };
 
   var key = function (e) {
-    if(e.target.tagName.toLowerCase() === 'input') return;
+    var tagName = e.target.tagName.toLowerCase();
+    if(tagName === 'input' || tagName === 'textarea') return;
     if(!arrows[e.keyCode]) return;
     arrows[e.keyCode]();
   };
@@ -116,5 +121,6 @@ module.exports = function (container) {
   ev.bind(document, 'keydown', key)
 
   returns.add = add;
+  returns.image = selected;
   return returns;
 };
