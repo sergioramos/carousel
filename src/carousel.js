@@ -30,6 +30,7 @@ var el = function (id) {
 };
 
 module.exports = function (container) {
+  var enabled = true;
   var id = genid();
   var returns = {};
   var size = 0;
@@ -77,14 +78,14 @@ module.exports = function (container) {
   };
 
   var first = function () {
-    if(pos === 1) return;
+    if(pos === 1) return false;
     if(pos === size) disable('last', 'next');
     move(pos, pos = 1);
     disable('prev', 'first');
   };
 
   var last = function () {
-    if(pos === size) return;
+    if(pos === size) return false;
     if(pos === 1) disable('first', 'prev');
     move(pos, pos = size);
     disable('next', 'last');
@@ -92,35 +93,47 @@ module.exports = function (container) {
   };
 
   var next = function () {
-    if(pos === size) return;
+    if(!enabled) return;
+    if(pos === size) return first();
     move(pos, pos += 1);
     if(pos === size) disable('next', 'last');
     if(pos === 2) disable('prev', 'first');
   };
 
   var prev = function () {
-    if(pos === 1) return;
+    if(pos === 1) return last();
     move(pos, pos -= 1);
     if(pos === (size - 1)) disable('next', 'last');
     if(pos === 1) disable('prev', 'first');
   };
 
   var key = function (e) {
+    if(!enabled) return;
     var tagName = e.target.tagName.toLowerCase();
     if(tagName === 'input' || tagName === 'textarea') return;
     if(!arrows[e.keyCode]) return;
     arrows[e.keyCode]();
   };
 
+  var disable = function () {
+    enabled = false;
+  };
+
+  var enable = function () {
+    enabled = true;
+  };
+
   var arrows = { 38: first, 37: prev, 39: next, 40: last }
 
+  ev.bind(el(id('images')), 'click', next);
   ev.bind(el(id('first')), 'click', first);
   ev.bind(el(id('last')), 'click', last);
   ev.bind(el(id('next')), 'click', next);
-  ev.bind(el(id('prev')), 'click', prev);
-  ev.bind(document, 'keydown', key)
+  ev.bind(document, 'keydown', key);
 
-  returns.add = add;
+  returns.disable = disable;
   returns.image = selected;
+  returns.enable = enable;
+  returns.add = add;
   return returns;
 };
