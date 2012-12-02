@@ -128,6 +128,7 @@ module.exports = function (container) {
   ev.bind(el(id('images')), 'click', next);
   ev.bind(el(id('first')), 'click', first);
   ev.bind(el(id('last')), 'click', last);
+  ev.bind(el(id('prev')), 'click', prev);
   ev.bind(el(id('next')), 'click', next);
   ev.bind(document, 'keydown', key);
 
