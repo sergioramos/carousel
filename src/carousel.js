@@ -115,14 +115,6 @@ module.exports = function (container) {
     arrows[e.keyCode]();
   };
 
-  var disable = function () {
-    enabled = false;
-  };
-
-  var enable = function () {
-    enabled = true;
-  };
-
   var arrows = { 38: first, 37: prev, 39: next, 40: last }
 
   ev.bind(el(id('images')), 'click', next);
@@ -132,9 +124,15 @@ module.exports = function (container) {
   ev.bind(el(id('next')), 'click', next);
   ev.bind(document, 'keydown', key);
 
-  returns.disable = disable;
+  returns.disable = function () {
+    enabled = false;
+  };
+
+  returns.enable = function () {
+    enabled = true;
+  };
+
   returns.image = selected;
-  returns.enable = enable;
   returns.add = add;
   return returns;
 };
