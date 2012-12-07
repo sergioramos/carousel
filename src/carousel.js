@@ -14,7 +14,7 @@ var genid = function () {
   var id = '';
 
   while(!id.length) {
-    var tmpid = sgen(3);
+    var tmpid = sgen.random(3);
     if(ids[tmpid]) continue;
     id = tmpid;
   }

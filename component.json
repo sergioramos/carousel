@@ -1,7 +1,9 @@
 {
   "name": "carousel",
   "repo": "ramitos/carousel",
-  "version": "0.0.3",
+  "twitter": "@ramitos",
+  "version": "0.0.4",
+  "license": "MIT",
   "scripts": [
     "templates/image.js",
     "templates/main.js",
