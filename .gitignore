@@ -1,4 +1,7 @@
 components
 build
 .DS_Store
-/index.html
+components
+component.json
+templates
+readme.md

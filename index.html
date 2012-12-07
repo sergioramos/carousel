@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='build/build.css' rel='stylesheet' type='text/css'>
+    <script src='build/build.js'></script>
+    <style>
+      body, html {
+        margin: 0px;
+      }
+      
+      .header {
+        background-color: whiteSmoke;
+        border-bottom: 1px solid #BBB;
+        padding: 5px;
+      }
+      
+      .hint {
+        font-family: "Lucida Grande", "Lucida Sans Unicode", Geneva, sans-serif;
+        padding-right: 10px;
+        font-style: italic;
+        font-size: small;
+        padding-top: 3px;
+        float: right;
+      }
+      
+      #carousel-container {
+        margin: 10px;
+      }
+    </style>
+    <title>ramitos/carousel</title>
+  </head>
+  <body>
+    <div class='header'>
+      <input id='height' type='text' value='200'>
+      <input id='width' type='text' value='300'>
+      <button id='add'>Add Image</button>
+      <span class='hint'>Hint: use the arrow keys or click in the image</span>
+    </div>
+    <div id='carousel-container'></div>
+    <script>
+      var carousel = require('carousel')(document.getElementById('carousel-container'));
+      
+      document.getElementById('add').addEventListener('click', function (e) {
+        e.preventDefault();
+        var height = document.getElementById('height');
+        var width = document.getElementById('width');
+        var url = "http://placekitten.com/g/" + width.value + "/" + height.value;
+        height.value = Math.floor(Math.random() * 500) + 100;
+        width.value = Math.floor(Math.random() * 500) + 100;
+        carousel.add(url);
+      });
+    </script>
+  </body>
+</html>
