@@ -59,6 +59,7 @@ module.exports = function (container) {
 
   var image = function (src) {
     if(size === 0) disable('next', 'last');
+    if(size === 1) disable('prev');
     var str = interpolate(templates.image, src, id(), size + 1, active());
     var node = domify(str).pop();
     size += 1;
@@ -79,16 +80,16 @@ module.exports = function (container) {
 
   var first = function () {
     if(pos === 1) return false;
-    if(pos === size) disable('last', 'next');
+    if(pos === size) disable('last');
     move(pos, pos = 1);
-    disable('prev', 'first');
+    disable('first');
   };
 
   var last = function () {
     if(pos === size) return false;
-    if(pos === 1) disable('first', 'prev');
+    if(pos === 1) disable('first');
     move(pos, pos = size);
-    disable('next', 'last');
+    disable('last');
     pos = size;
   };
 
@@ -96,15 +97,16 @@ module.exports = function (container) {
     if(!enabled) return;
     if(pos === size) return first();
     move(pos, pos += 1);
-    if(pos === size) disable('next', 'last');
-    if(pos === 2) disable('prev', 'first');
+    if(pos === size) disable('last');
+    if(pos === 2) disable('first');
   };
 
   var prev = function () {
     if(pos === 1) return last();
     move(pos, pos -= 1);
-    if(pos === (size - 1)) disable('next', 'last');
-    if(pos === 1) disable('prev', 'first');
+    if(pos === (size - 1)) disable('last');
+    if(pos === 1) disable('first');
+    if(pos === size) disable('last');
   };
 
   var key = function (e) {
