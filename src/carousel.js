@@ -37,7 +37,7 @@ module.exports = function (container) {
   var els = {};
   var pos = 1;
 
-  container.appendChild(domify(templates.main.replace(/%s/mg, id())).pop());
+  container.appendChild(domify(templates.main.replace(/%s/mg, id())));
 
   els.images = el(id('images'));
   els.count = el(id('count'));
@@ -61,7 +61,7 @@ module.exports = function (container) {
     if(size === 0) disable('next', 'last');
     if(size === 1) disable('prev');
     var str = interpolate(templates.image, src, id(), size + 1, active());
-    var node = domify(str).pop();
+    var node = domify(str);
     size += 1;
     return node;
   };
