@@ -1,3 +1,5 @@
+![deprecated](https://img.shields.io/badge/status-deprecated-red.svg?style=plastic)
+
 # carousel
 
 image carousel [demo](http://ramitos.github.com/carousel)
